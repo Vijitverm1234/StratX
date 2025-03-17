@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
-export const regsiter = async (req, res) => {
+export const register = async (req, res) => {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
         return res.json({ msg: "failed to register" })
