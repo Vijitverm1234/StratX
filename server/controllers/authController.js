@@ -28,6 +28,13 @@ export const register = async (req, res) => {
             ,
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
+
+        const mailOption = {
+            from: process.env.SENDER_EMAIL,
+            to: email,
+            subject: 'Welcome to Imagify',
+            text: 'Welcome to Imagify your account has been created I hope that you will have good exprience with us'
+        }
         return res.json({ success: true })
     } catch (error) {
         res.json({ success: false, message: error.message })
