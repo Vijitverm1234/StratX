@@ -158,26 +158,36 @@ export const logout = async (req, res) => {
 export const sendVerifyOtp = async (req, res) => {
   try {
     const { userId } = req.body;
-    const user = await userModel.findById(userId)
-    if (user.isAccountVerified) {
-      return res.json({ success: false, msg: "already verified" })
+
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, msg: "User not found" });
     }
-    const otp = String(Math.floor(100000 + Math.random() * 900000))
+
+    if (user.isAccountVerified) {
+      return res.json({ success: false, msg: "Already verified" });
+    }
+
+    const otp = String(Math.floor(100000 + Math.random() * 900000));
     user.verifyOtp = otp;
-    user.verifyOtpExpireAt = Date.now() + 24 * 60 * 60 * 1000
-    await user.save()
+    user.verifyOtpExpireAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+    await user.save();
+
     const mailOption = {
       from: process.env.SENDER_EMAIL,
-      to: email,
+      to: user.email, 
       subject: 'Welcome to Imagify',
-      text: `Your Otp is ${ otp } .Verify Your Email using this OTP`
-    }
+      text: `Your OTP is ${otp}. Verify your email using this OTP.`,
+    };
+
     await transporter.sendMail(mailOption);
-    return res.json({ success: true, msg: "verification done" })
+
+    return res.json({ success: true, msg: "Verification OTP sent successfully" });
   } catch (error) {
-    return res.json({ success: false, msg: error.message })
+    return res.status(500).json({ success: false, msg: error.message });
   }
-}
+};
+
 export const verifyEmail = async (req, res) => {
   const { userId, otp } = req.body;
   if (!userId || !otp) {
@@ -202,3 +212,7 @@ export const verifyEmail = async (req, res) => {
     res.json({ success: false, msg:error.message })
   }
 } 
+
+export const isAuthenticated=async(req,res)=>{
+
+}
