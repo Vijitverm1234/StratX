@@ -36,65 +36,77 @@ export const register = async (req, res) => {
       subject: 'Welcome to Imagify',
       text: 'Welcome to Imagify your account has been created I hope that you will have good exprience with us ',
       html: `
-            <html>
-              <head>
-                <style>
-                  body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f4f4f9;
-                    color: #333;
-                    margin: 0;
-                    padding: 0;
-                  }
-                  .container {
-                    width: 100%;
-                    max-width: 600px;
-                    margin: 0 auto;
-                    background-color: #fff;
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                  }
-                  h1 {
-                    color: #5c6bc0;
-                  }
-                  p {
-                    font-size: 16px;
-                    line-height: 1.5;
-                  }
-                  .button {
-                    display: inline-block;
-                    padding: 12px 20px;
-                    background-color: #5c6bc0;
-                    color: white;
-                    text-decoration: none;
-                    border-radius: 5px;
-                    font-size: 16px;
-                    margin-top: 20px;
-                  }
-                  .footer {
-                    text-align: center;
-                    margin-top: 30px;
-                    font-size: 12px;
-                    color: #999;
-                  }
-                </style>
-              </head>
-              <body>
-                <div class="container">
-                  <h1>Welcome to Imagify!</h1>
-                  <p>Dear user,</p>
-                  <p>Your account has been successfully created with Imagify. We are excited to have you on board and we hope you enjoy using our services.</p>
-                  <p>If you have any questions, feel free to <a href="https://text-to-image-convertor-frontend.onrender.com/" class="button">contact us</a>.</p>
-                  <p>Thank you for joining Imagify!</p>
-                  <p>Best regards,<br/>The Imagify Team</p>
-                </div>
-                <div class="footer">
-                  <p>Imagify, All rights reserved</p>
-                </div>
-              </body>
-            </html>
-          `,
+           <!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      h1 {
+        color:rgb(255, 255, 255);
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555;
+      }
+      .button {
+        display: inline-block;
+        padding: 14px 24px;
+        background-color: #5c6bc0;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-top: 20px;
+        transition: background 0.3s ease;
+      }
+      .button:hover {
+        background-color: #3f51b5;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 12px;
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="https://via.placeholder.com/100" alt="Imagify Logo" style="width: 80px; margin-bottom: 15px;" />
+      <h1>Welcome to Imagify!</h1>
+      <p>Dear user,</p>
+      <p>Congratulations! Your account has been successfully created with <b>Imagify</b>. We are thrilled to have you on board and hope you enjoy our services.</p>
+      <p>If you have any questions, feel free to reach out to us.</p>
+      <a href="https://text-to-image-convertor-frontend.onrender.com/" class="button">Get Started</a>
+      <p>Thank you for choosing Imagify!</p>
+      <p>Best regards,<br/><strong>The Imagify Team</strong></p>
+    </div>
+    <div class="footer">
+      <p>&copy; 2025 Imagify, All rights reserved.</p>
+    </div>
+  </body>
+</html>`
+,
     }
     await transporter.sendMail(mailOption)
     return res.json({ success: true })
@@ -158,7 +170,7 @@ export const sendVerifyOtp = async (req, res) => {
       from: process.env.SENDER_EMAIL,
       to: email,
       subject: 'Welcome to Imagify',
-      text: `Your Otp is ${otp} . Verify Your Email using this OTP`
+      text: `Your Otp is ${ otp } .Verify Your Email using this OTP`
     }
     await transporter.sendMail(mailOption);
     return res.json({ success: true, msg: "verification done" })
@@ -179,7 +191,7 @@ export const verifyEmail = async (req, res) => {
     if(user.verifyOtp==''||user.verifyOtp!==otp){
       return res.json({ success: false, msg: "invalid otp" })
     }
-    if(user.verifyOtpExpireAt<Date.now()){
+    if(user.verifyOtpExpireAt < Date.now()){
       return res.json({ success: false, msg: "OTP Expired" })
     }
     user.isAccountVerified=true;
