@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";  // ✅ Import axios
 
@@ -11,6 +11,11 @@ export const AppContextProvider = (props) => {
     const getAuthState=async()=>{
         try {
             const {data}=await axios.get(backendUrl+'/api/auth/is-auth')
+            if(data.success){
+                setIsLoggedin(true)
+                getUserData(true)
+                getUserData()
+            }
         } catch (error) {
             toast.error(error.message)
         }
@@ -23,7 +28,9 @@ export const AppContextProvider = (props) => {
             toast.error(error.response?.data?.message || "Failed to fetch user data");
         }
     };
-
+   useEffect(()=>{
+     
+   },[])
     const value = {
         backendUrl,
         isLoggedin,
