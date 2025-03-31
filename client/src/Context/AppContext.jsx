@@ -1,47 +1,67 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import axios from "axios";  // ✅ Import axios
+import axios from "axios";
 
 export const AppContent = createContext();
 
 export const AppContextProvider = (props) => {
+    axios.defaults.withCredentials = true;
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
     const [isLoggedin, setIsLoggedin] = useState(false);
-    const [userData, setUserData] = useState(null); // ✅ Fix initial state
-    const getAuthState=async()=>{
+    const [userData, setUserData] = useState(null);
+
+    const getAuthState = async () => {
+        if (!backendUrl) {
+            toast.error("Backend URL is missing.");
+            return;
+        }
         try {
-            const {data}=await axios.get(backendUrl+'/api/auth/is-auth')
-            if(data.success){
-                setIsLoggedin(true)
-                getUserData(true)
-                getUserData()
+            const { data } = await axios.get(`${backendUrl}/api/auth/is-auth`);
+            if (data.success) {
+                setIsLoggedin(true);
+                getUserData(); 
+            } else {
+                setIsLoggedin(false);
             }
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.response?.data?.message || "Authentication check failed");
         }
-    }
+    };
+
     const getUserData = async () => {
+        if (!backendUrl) {
+            toast.error("Backend URL is missing.");
+            return;
+        }
         try {
-            const { data } = await axios.get(`${backendUrl}/api/user/data`, { withCredentials: true });
-            data.success ? setUserData(data.userData) : toast.error(data.message);
+            const { data } = await axios.get(`${backendUrl}/api/user/data`);
+            if (data.success) {
+                setUserData(data.userData);
+            } else {
+                toast.error(data.message);
+            }
         } catch (error) {
             toast.error(error.response?.data?.message || "Failed to fetch user data");
         }
     };
-   useEffect(()=>{
-     
-   },[])
-    const value = {
-        backendUrl,
-        isLoggedin,
-        userData,
-        setIsLoggedin,
-        setUserData,
-        getUserData
-    };
+
+    // Fetch authentication state on mount
+    useEffect(() => {
+        getAuthState();
+    }, []);
 
     return (
-        <AppContent.Provider value={value}>
+        <AppContent.Provider
+            value={{
+                backendUrl,
+                isLoggedin,
+                userData,
+                setIsLoggedin,
+                setUserData,
+                getUserData,
+            }}
+        >
             {props.children}
         </AppContent.Provider>
     );

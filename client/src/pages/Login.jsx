@@ -38,7 +38,7 @@ const Login = () => {
       }
       
       if (data.success) {
-        await getUserData(); // Fetch user data before setting login state
+        await getUserData(); 
         setIsLoggedin(true);
         navigate('/');
       } else {
