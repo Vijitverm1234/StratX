@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { assets } from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
 import { AppContent } from '../Context/AppContext';
@@ -36,46 +36,60 @@ const Navbar = () => {
       toast.error(error.message);
     }
   };
-
+    
+  
   return (
-    <div className="fixed top-0 w-full flex justify-between items-center px-6 sm:px-24 py-4 backdrop-blur-lg  z-50">
-      {/* Logo */}
-      <img
-        src={assets.logo}
-        alt="Logo"
-        className="w-28 sm:w-32 cursor-pointer"
-        onClick={() => navigate('/')}
-      />
+    <div className="fixed top-0 w-full flex justify-between items-center px-6 sm:px-24 py-4 backdrop-blur-md bg-white/80  border-gray-200 dark:border-slate-700 z-50">
+  {/* Logo */}
+  <img
+    src={assets.logo}
+    alt="Logo"
+    className="w-28 sm:w-32 cursor-pointer"
+    onClick={() => navigate('/')}
+  />
 
-      {/* User Info or Login Button */}
-      {userData ? (
-        <div className="relative group">
-          <div className="w-12 h-12 flex justify-center items-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold text-lg shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
-            {userData?.name?.charAt(0).toUpperCase()}
-          </div>
-
-          {/* Dropdown */}
-          <div className="absolute hidden group-hover:flex flex-col top-14 right-0 z-20 bg-white shadow-lg rounded-xl overflow-hidden transition-all duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-            <ul className="list-none m-0 p-2 text-sm text-gray-700 w-44">
-              {!userData.isAccountVerified && (
-                <li className="py-3 px-4 hover:bg-gray-100 cursor-pointer transition" onClick={sendVerificationOtp}>✅ Verify Email</li>
-              )}
-              <li className="py-3 px-4 hover:bg-gray-100 cursor-pointer transition" onClick={logout}>
-                🚪 Log Out
-              </li>
-            </ul>
-          </div>
+  {/* User Info or Login Button */}
+  {userData ? (
+    <div className="relative group">
+      {/* Profile Circle */}
+      <div className="flex items-center space-x-2 cursor-pointer">
+        <div className="w-11 h-11 flex items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-700 gray-white text-lg font-bold shadow-md transition-transform duration-300 group-hover:scale-105">
+          {userData?.name?.charAt(0).toUpperCase()}
         </div>
-      ) : (
-        <button
-          className="flex items-center gap-2 border border-gray-500 rounded-full px-6 py-2 text-gray-800 bg-white shadow-md hover:bg-gray-200 transition-all duration-300 ease-in-out"
-          onClick={() => navigate('/login')}
+        <span className="text-gray-700 dark:text-gray-600 hidden sm:inline font-medium">
+          {userData?.name?.split(' ')[0]}
+        </span>
+      </div>
+
+
+      <div className="absolute right-0 mt-3 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out z-50">
+        {!userData.isAccountVerified && (
+          <div
+            className="px-4 py-3 text-sm text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer transition"
+            onClick={sendVerificationOtp}
+          >
+            ✅ Verify Email
+          </div>
+        )}
+        <div
+          className="px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer transition"
+          onClick={logout}
         >
-          Login
-          <img src={assets.arrow_icon} alt="Arrow" className="w-4" />
-        </button>
-      )}
+          🚪 Log Out
+        </div>
+      </div>
     </div>
+  ) : (
+    <button
+      className="flex items-center gap-2 border border-gray-700 dark:border-gray-600 rounded-full px-5 py-2 bg-white  text-gray-800  shadow hover:bg-gray-100 hover:text-white dark:hover:bg-slate-600 transition duration-300"
+      onClick={() => navigate('/login')}
+    >
+      Login
+      <img src={assets.arrow_icon} alt="Arrow" className="w-4" />
+    </button>
+  )}
+</div>
+
   );
 };
 

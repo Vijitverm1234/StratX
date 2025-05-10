@@ -1,20 +1,25 @@
 import jwt from "jsonwebtoken";
-const userAuth=async(req,resizeBy,next)=>{
-    const {token}=req.cookies;
-    if(!token){
-        resizeBy.json({success:false,message:'not authorised login again'})
+
+const userAuth = async (req, res, next) => {
+    const { token } = req.cookies;
+
+    if (!token) {
+        return res.status(401).json({ success: false, message: 'Not authorised, login again' }); 
     }
+
     try {
-        const tokenDecode=jwt.verify(token,process.env.JWT_SECRET)
-        if(tokenDecode.id){
-            req.body.userId=tokenDecode.id
+        const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (tokenDecode.id) {
+            req.body.userId = tokenDecode.id;
+        } else {
+            return res.status(401).json({ success: false, msg: "Not authorized" }); 
         }
-        else{
-            return resizeBy.json({success:false,msg:"not authorized"})
-        }
-        next()
+
+        next();
     } catch (error) {
-        return resizeBy.json({success:false,msg:error.message})
+        return res.status(401).json({ success: false, msg: error.message }); // ✅ Added return
     }
-}
+};
+
 export default userAuth;

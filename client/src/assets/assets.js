@@ -5,6 +5,8 @@ import mail_icon from './mail_icon.svg'
 import person_icon from './person_icon.svg'
 import hand_wave from './hand_wave.png'
 import header_img from './header_img.png'
+import main from './main.jpg'
+import main1 from './main1.jpg'
 
 export const assets = {
     arrow_icon,
@@ -13,5 +15,25 @@ export const assets = {
     mail_icon,
     person_icon,
     hand_wave,
-    header_img
+    header_img,main,main1
 }
+export const plans = [
+    {
+      id: 'Basic',
+      price: 10,
+      credits: 100,
+      desc: 'Best for personal use.'
+    },
+    {
+      id: 'Advanced',
+      price: 50,
+      credits: 500,
+      desc: 'Best for business use.'
+    },
+    {
+      id: 'Business',
+      price: 250,
+      credits: 5000,
+      desc: 'Best for enterprise use.'
+    },
+  ]
