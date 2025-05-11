@@ -7,7 +7,8 @@ import hand_wave from './hand_wave.png'
 import header_img from './header_img.png'
 import main from './main.jpg'
 import main1 from './main1.jpg'
-
+import back from './backgroun.png'
+import weblogo from './logo1.png'
 export const assets = {
     arrow_icon,
     lock_icon,
@@ -15,7 +16,8 @@ export const assets = {
     mail_icon,
     person_icon,
     hand_wave,
-    header_img,main,main1
+    header_img,main,main1 ,
+    back, weblogo
 }
 export const plans = [
     {

@@ -28,7 +28,7 @@ const MiddlePage = () => {
           </button>
           <button
             className='bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-md transition-all duration-200 text-lg font-medium'
-            onClick={() => navigate('/doctor')}
+            onClick={() => navigate('/Doclogin')}
           >
             🩺 Doctor
           </button>

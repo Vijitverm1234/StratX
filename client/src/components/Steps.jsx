@@ -11,10 +11,10 @@ const Steps = () => {
       viewport={{ once: true }}
       className='flex flex-col items-center justify-center my-32 px-4'
     >
-        <h1 className='text-4xl sm:text-5xl font-bold mb-2 '>
-                 How it  <span className='underline underline-offset-4 decoration-1 under font-light'>work</span>
+        <h1 className='text-4xl sm:text-5xl font-bold mb-2 text-blue-800 '>
+                 How it  <span className='underline underline-offset-4 decoration-1 under font-light text-blue-700'>works</span>
             </h1 >
-      <p className='text-lg text-neutral-600 mb-10 text-center'>
+      <p className='text-lg mb-10 text-center text-blue-700'>
         Transform words into stunning visuals in just a few steps
       </p>
 

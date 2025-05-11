@@ -9,7 +9,7 @@ function Footer() {
 
       
         <div className="flex-1">
-          <img src={assets.logo} width={150} alt="Imagify Logo" className="mb-4" />
+          <img src={assets.weblogo} width={150} alt="Imagify Logo" className="mb-4" />
           <p className="max-w-xs text-gray-500">
             Transform your imagination into stunning visuals using our AI-powered image generator.
           </p>

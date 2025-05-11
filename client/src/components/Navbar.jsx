@@ -40,18 +40,17 @@ const Navbar = () => {
   
   return (
     <div className="fixed top-0 w-full flex justify-between items-center px-6 sm:px-24 py-4 backdrop-blur-md bg-white/80  border-gray-200 dark:border-slate-700 z-50">
-  {/* Logo */}
+
   <img
-    src={assets.logo}
+    src={assets.weblogo}
     alt="Logo"
     className="w-28 sm:w-32 cursor-pointer"
     onClick={() => navigate('/')}
   />
 
-  {/* User Info or Login Button */}
   {userData ? (
     <div className="relative group">
-      {/* Profile Circle */}
+
       <div className="flex items-center space-x-2 cursor-pointer">
         <div className="w-11 h-11 flex items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-700 gray-white text-lg font-bold shadow-md transition-transform duration-300 group-hover:scale-105">
           {userData?.name?.charAt(0).toUpperCase()}

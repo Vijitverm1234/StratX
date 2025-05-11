@@ -8,13 +8,13 @@ function Description() {
       transition={{ duration: 1 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className='flex flex-col items-center justify-center my-24 px-6 md:px-20'
+      className='flex flex-col items-center justify-center my-24 px-6 md:px-20 '
     >
-         <h1 className='text-4xl sm:text-5xl font-bold mb-2 '>
-                 Honoring Our <span className='underline underline-offset-4 decoration-1 under font-light'>Heroes</span>
-            </h1 >
-      
-      <p className='text-neutral-600 text-lg mb-12 text-center'>
+      <h1 className='text-4xl sm:text-5xl font-bold mb-2 text-blue-800'>
+        Honoring Our <span className='underline underline-offset-4 decoration-1 font-light text-blue-600'>Heroes</span>
+      </h1>
+
+      <p className='text-blue-700 text-lg mb-12 text-center'>
         Celebrating the Unwavering Dedication of Doctors
       </p>
 
@@ -25,14 +25,13 @@ function Description() {
           transition={{ delay: 0.2, duration: 1 }}
           className='flex-1'
         >
-
-          <h2 className='text-2xl sm:text-3xl font-semibold mb-5 text-gray-800'>
+          <h2 className='text-2xl sm:text-3xl font-semibold mb-5'>
             The Lifesaving Role of Doctors in Our Society
           </h2>
-          <p className='text-gray-600 leading-relaxed mb-4'>
+          <p className='leading-relaxed mb-4'>
             Doctors are the backbone of our healthcare system, tirelessly working to heal, comfort, and save lives. From routine checkups to life-saving surgeries, they stand at the frontlines of human well-being.
           </p>
-          <p className='text-gray-600 leading-relaxed'>
+          <p className='leading-relaxed'>
             Their dedication, compassion, and expertise inspire us every day. Let’s take a moment to appreciate the profound impact they make in our lives and communities.
           </p>
         </div>

@@ -19,6 +19,7 @@ import star_group from './star_group.png'
 import credit_star from './credit_star.svg'
 import profile_icon from './profile_icon.png'
 import doctor from './doctor.jpg'
+import weblogo from './logo1.png'
 export const assets = {
     logo,
     logo_icon,
@@ -35,26 +36,28 @@ export const assets = {
     star_group,
     credit_star,
     profile_icon,
-    doctor
+    doctor,weblogo
 }
 
 export const stepsData = [
-    {
-      title: 'Describe Your Vision',
-      description: 'Type a phrase, sentence, or paragraph that describes the image you want to create.',
-      icon: step_icon_1,
-    },
-    {
-      title: 'Watch the Magic',
-      description: 'Our AI-powered engine will transform your text into a high-quality, unique image in seconds.',
-      icon: step_icon_2,
-    },
-    {
-      title: 'Download & Share',
-      description: 'Instantly download your creation or share it with the world directly from our platform.',
-      icon: step_icon_3,
-    },
-  ];
+  {
+    title: 'Buy a Plan',
+    description: 'Choose the healthcare plan that best suits your needs and unlock premium features and expert support.',
+    icon: step_icon_1,
+  },
+  {
+    title: 'Consultancy Appointment',
+    description: 'Book a professional consultation with certified doctors at your convenience, directly from our platform.',
+    icon: step_icon_2,
+  },
+  
+  {
+    title: 'Downloadable Report',
+    description: 'Receive a detailed, downloadable health report to track progress and share with specialists.',
+    icon: step_icon_3,
+  },
+];
+
 
 export const testimonialsData = [
     {

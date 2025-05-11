@@ -60,7 +60,7 @@ const VerifyEmail = () => {
       if (data.success) {
         toast.success(data.message);
         getUserData();
-        navigate('/');
+        navigate('/buy');
       } else {
         toast.error(data.message);
       }
@@ -106,6 +106,7 @@ const VerifyEmail = () => {
         <button
           type='submit'
           className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-800 hover:from-indigo-600 hover:to-indigo-900 rounded-full text-white font-semibold transition duration-300'
+        
         >
           Verify Email
         </button>

@@ -2,54 +2,101 @@ import React, { useContext } from 'react';
 import { assets } from '../assets/assets';
 import { AppContent } from '../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   const { userData } = useContext(AppContent);
   const userName = userData?.name || 'there';
   const isVerify = userData?.isAccountVerified || false;
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className='flex flex-col items-center mt-16 px-6 text-center relative'>
-        <div className='relative mt-4'>
-          <img
-            src={assets.main}
-            alt='User avatar'
-            className='w-40 h-40 rounded-full border-4 border-gray-300'
-          />
-          <img
-            src={assets.hand_wave}
-            alt='Waving hand emoji'
-            className='w-10 absolute -bottom-2 -right-4 animate-bounce'
-          />
-        </div>
-
-        <h1 className='mt-6 text-2xl sm:text-4xl font-semibold text-gray-900 flex items-center gap-2'>
-          <span className='text-gray-700'></span> Hey {userName}
-        </h1>
-        <h2 className='text-xl sm:text-5xl font-bold text-gray-800 mt-2 tracking-tight'>
-          Welcome to MedVision
-        </h2>
-
-        <p className='mt-4 text-gray-600 max-w-lg leading-relaxed text-lg'>
-          "Your health deserves more than guesswork — trust a doctor’s advice.
-          Expert care today means a healthier tomorrow."
-        </p>
-
-        <button
-          className='mt-6 flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-400 text-white text-lg font-medium px-10 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300'
-          onClick={() => console.log('Get Started Clicked')}
+      <div className="flex items-center justify-center min-h-screen px-6 sm:px-20 py-16 text-center relative bg-offwhite mt-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="max-w-5xl w-full"
         >
-          🚀 Get Started
-        </button>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-blue-800 mb-4 leading-tight"
+          >
+            Hi <span className="text-indigo-600">{userName}</span>,
+          </motion.h1>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-3xl sm:text-5xl lg:text-6xl font-semibold text-gray-800 mb-6"
+          >
+            Welcome to <span className="text-blue-600">MedVision</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-md sm:text-lg text-gray-700 mb-8 max-w-3xl mx-auto sm:mx-0 leading-relaxed"
+          >
+            Empowering you with smarter healthcare solutions. Trust MedVision for AI-driven insights,
+            personalized care, and seamless communication with healthcare professionals at your fingertips.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8"
+          >
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold shadow-md transition-all duration-300 cursor-pointer"
+              onClick={() => console.log('Get Started Clicked')}
+            >
+              🚀 Get Started
+            </button>
+            <button
+              className="text-blue-700 hover:text-blue-900 font-medium text-lg underline-offset-4 transition-all duration-300 rounded-lg border-2 border-blue-700 px-6 py-3 cursor-pointer"
+              onClick={() => navigate('/about')}
+            >
+              Learn More →
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="w-16 h-1 bg-blue-600 mx-auto my-8 rounded-lg origin-left"
+          />
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="text-gray-600 text-sm sm:text-md mb-6"
+          >
+            Experience the future of healthcare with MedVision: a platform designed for your health and
+            well-being.
+          </motion.p>
+        </motion.div>
       </div>
 
       {isVerify && (
-        <div className="fixed bottom-4 right-4 z-50">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition-all"
-          onClick={() => navigate('/middle')}>
-            Open Dashboard
-          </button>
+        <div className="fixed bottom-6 right-6 z-50">
+          <motion.button
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.9 }}
+            className="bg-indigo-600 text-white px-5 py-2.5 rounded-lg shadow-lg hover:bg-indigo-700 transition-all duration-300"
+            onClick={() => navigate('/middle')}
+          >
+            📊 Open Dashboard
+          </motion.button>
         </div>
       )}
     </>

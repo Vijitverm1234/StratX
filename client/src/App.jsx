@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import BuyAPlan from './pages/BuyAPlan'
 import MiddlePage from './components/MiddlePage'
+import DoctorLogin from './pages/DoctorLogin'
 const App = () => {
   
   return (
@@ -21,6 +22,8 @@ const App = () => {
         <Route path='/reset-password' element={<ResetPassword></ResetPassword>}></Route>
         <Route path='/buy' element={<BuyAPlan></BuyAPlan>}></Route>
         <Route path='/middle' element={<MiddlePage></MiddlePage>}></Route>
+        <Route path='/Doclogin' element={<DoctorLogin></DoctorLogin>}></Route>
+
 
 
       

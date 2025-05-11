@@ -29,11 +29,19 @@ const Login = () => {
         setIsLoggedin(true);
         navigate('/');
       } else {
-        toast.error(data.message);
+        toast.error(data.message || 'Authentication failed.');
       }
     } catch (error) {
       console.error("Auth Error:", error);
-      toast.error(error.response?.data?.message || 'Something went wrong. Please try again.');
+
+      const status = error.response?.status;
+      const message =
+        error.response?.data?.message ||
+        (status === 401 && 'Incorrect password.') ||
+        (status === 404 && 'User not found.') ||
+        'Something went wrong. Please try again.';
+
+      toast.error(message);
     } finally {
       setLoading(false);
     }
