@@ -17,7 +17,7 @@ const VerifyEmail = () => {
 
   useEffect(() => {
     if (isLoggedIn && userData?.isAccountVerified) {
-      navigate('/');
+      navigate('/buy');
     }
   }, [isLoggedIn, userData, navigate]);
 
