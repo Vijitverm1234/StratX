@@ -16,6 +16,11 @@ const allowedOrigins = ['http://localhost:5173', 'http://your-production-url.com
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: allowedOrigins, credentials: true }));
+app.use(cors({
+  origin: 'https://medvision-vxqw.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true, // If using cookies or authentication
+}));
 
 // Routes setup
 app.get('/', (req, res) => {
