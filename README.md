@@ -1,4 +1,4 @@
-# HealthSync Healthcare Platform
+# MedVision Healthcare Platform
 
 <img width="940" alt="shot1" src="https://github.com/user-attachments/assets/ae12d3d8-020b-417a-97fe-f76e75845e9c" />
 
