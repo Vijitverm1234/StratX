@@ -1,25 +1,25 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const userAuth = async (req, res, next) => {
-    const { token } = req.cookies;
+  // Skip authentication for /api/auth/is-auth
+  if (req.path === '/api/auth/is-auth') {
+    return next();
+  }
 
-    if (!token) {
-        return res.status(401).json({ success: false, message: 'Not authorised, login again' }); 
-    }
+  const { token } = req.cookies;
 
-    try {
-        const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'Not authorized, please log in' });
+  }
 
-        if (tokenDecode.id) {
-            req.body.userId = tokenDecode.id;
-        } else {
-            return res.status(401).json({ success: false, msg: "Not authorized" }); 
-        }
-
-        next();
-    } catch (error) {
-        return res.status(401).json({ success: false, msg: error.message }); // ✅ Added return
-    }
+  try {
+    const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
+    req.body.userId = tokenDecode.id; // Attach user ID to request
+    next();
+  } catch (error) {
+    console.error('Token verification error:', error);
+    return res.status(401).json({ success: false, message: 'Invalid token' });
+  }
 };
 
 export default userAuth;
