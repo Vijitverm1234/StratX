@@ -33,6 +33,11 @@ const userSchema=new mongoose.Schema({
         type:Number,
         default:0
     }
+    ,
+    isPaymentdone:{
+        type:Boolean,
+        default:false
+    }
 })
 const userModel=  mongoose.model.user || mongoose.model('user',userSchema)
 export default userModel;

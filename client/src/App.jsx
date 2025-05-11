@@ -8,6 +8,7 @@ import ResetPassword from './pages/ResetPassword'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import BuyAPlan from './pages/BuyAPlan'
+import MiddlePage from './components/MiddlePage'
 const App = () => {
   
   return (
@@ -19,6 +20,8 @@ const App = () => {
         <Route path='/email-verify' element={<VerifyEmail></VerifyEmail>}></Route>
         <Route path='/reset-password' element={<ResetPassword></ResetPassword>}></Route>
         <Route path='/buy' element={<BuyAPlan></BuyAPlan>}></Route>
+        <Route path='/middle' element={<MiddlePage></MiddlePage>}></Route>
+
 
       
          

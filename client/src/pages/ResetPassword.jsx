@@ -91,7 +91,7 @@ const ResetPassword = () => {
   }, [isEmailSent]);
 
   return (
-    <div className='flex items-center justify-center min-h-screen px-6 bg-gradient-to-br'>
+    <div className='flex items-center justify-center min-h-screen px-6 '>
       <img
         src={assets.logo}
         alt='App Logo'
