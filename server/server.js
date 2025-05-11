@@ -12,7 +12,7 @@ const app = express();
 connectDB();
 
 // CORS setup for both localhost and production
-const allowedOrigins = ['http://localhost:5173', 'http://your-production-url.com','https://stratx.onrender.com/'];
+const allowedOrigins = ['http://localhost:5173', 'http://your-production-url.com','https://medvision-vxqw.onrender.com/login'];
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: allowedOrigins, credentials: true }));
